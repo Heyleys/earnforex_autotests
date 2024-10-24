@@ -10,7 +10,10 @@
   "author": "Olha",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^13.15.0",
     "typo-js": "^1.2.4"
+  },
+  "devDependencies": {
+    "cypress": "^13.15.0",
+    "dotenv": "^16.4.5"
   }
 }
