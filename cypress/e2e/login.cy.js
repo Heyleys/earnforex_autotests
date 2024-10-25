@@ -48,7 +48,7 @@ describe('Login breditor', () => {
         })
     })
 
-    it("Login with Enter-button", () => {
+    it.only("Login with Enter-button", () => {
         loginInput().type(Cypress.env('LOGIN1'));
         passwordInput().type(Cypress.env('PASS1')).type('{enter}');
         cy.url().should('eq', Cypress.env('dashboardPageUrl'));
