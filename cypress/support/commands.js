@@ -1,20 +1,23 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+import { loginInput, passwordInput, signupButton } from './locators';
+
+
+Cypress.Commands.add('login', (username, password) => {
+    const username = Cypress.env('LOGIN1');
+    const password = Cypress.env('PASS1');
+
+    loginInput().click().type(username);
+    passwordInput().click().type(password);
+    signupButton().click();
+});
+
+
+Cypress.Commands.add('checkBrokerCount', () => {
+    cy.get('td.brokers__table-broker')
+    .should('have.length.greaterThan', 600)
+    .then((brokers) => {
+      cy.log(`Общее количество брокеров: ${brokers.length}`);
+    });
+})
 //
 //
 // -- This is a dual command --
