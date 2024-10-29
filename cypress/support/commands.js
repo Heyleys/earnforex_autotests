@@ -1,4 +1,4 @@
-import { loginInput, passwordInput, signupButton } from './locators';
+import { loginInput, passwordInput, signupButton, logoutButton, lastBrockerFromList } from './locators';
 
 
 Cypress.Commands.add('loginBreditor', () => {
@@ -8,6 +8,12 @@ Cypress.Commands.add('loginBreditor', () => {
     loginInput().click().type(username);
     passwordInput().click().type(password);
     signupButton().click();
+    lastBrockerFromList().should('be.visible');
+});
+
+Cypress.Commands.add('logoutBreditor', () => {
+  logoutButton().should('be.visible')
+  .click();
 });
 
 
@@ -18,6 +24,8 @@ Cypress.Commands.add('checkBrokerCount', () => {
       cy.log(`Общее количество брокеров: ${brokers.length}`);
     });
 })
+
+
 //
 //
 // -- This is a dual command --
