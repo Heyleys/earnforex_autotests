@@ -4,14 +4,6 @@ import { loginInput, passwordInput, signupButton, rememberMeCheckbox } from '../
 
 describe('Login breditor', () => {
 
-    Cypress.Commands.add('checkBrokerCount', () => {
-        cy.get('td.brokers__table-broker')
-        .should('have.length.greaterThan', 600)
-        .then((brokers) => {
-        cy.log(`Общее количество брокеров: ${brokers.length}`);
-        });
-    })
-
     beforeEach(() => {
         cy.visit(Cypress.env('loginPageUrl'));
         loginInput().should('be.visible').clear();
@@ -48,7 +40,7 @@ describe('Login breditor', () => {
         })
     })
 
-    it.only("Login with Enter-button", () => {
+    it("Login with Enter-button", () => {
         loginInput().type(Cypress.env('LOGIN1'));
         passwordInput().type(Cypress.env('PASS1')).type('{enter}');
         cy.url().should('eq', Cypress.env('dashboardPageUrl'));
@@ -110,4 +102,3 @@ describe('Login breditor', () => {
         cy.log('tests completed');
     });
 });
-
