@@ -25,6 +25,10 @@ Cypress.Commands.add('checkBrokerCount', () => {
     });
 })
 
+Cypress.Commands.add('isSorted', (array, ascending = true) => {
+    const sortedArray = ascending ? [...array].sort() : [...array].sort().reverse();
+    expect(array).to.deep.equal(sortedArray);
+});
 
 //
 //
