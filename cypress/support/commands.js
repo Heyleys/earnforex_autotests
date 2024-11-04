@@ -25,10 +25,29 @@ Cypress.Commands.add('checkBrokerCount', () => {
     });
 })
 
-Cypress.Commands.add('isSorted', (array, ascending = true) => {
+Cypress.Commands.add('isSortedData', (array, ascending = true) => {
     const sortedArray = ascending ? [...array].sort() : [...array].sort().reverse();
     expect(array).to.deep.equal(sortedArray);
 });
+
+Cypress.Commands.add('isBrokerNameSorted', (array, ascending = false) => {
+    // const sortedArray = ascending ? [...array].sort() : [...array].sort().reverse();
+
+    const sortedArray = [...array].sort((a, b) => {
+        const nameA = a.toLowerCase();
+        const nameB = b.toLowerCase();
+        return nameA.localeCompare(nameB); // сортировка в алфавитном порядке
+    });
+
+    // Переворачиваем массив, если сортировка должна быть в обратном порядке
+    if (!ascending) {
+        sortedArray.reverse();
+    }
+    console.log(sortedArray);
+    expect(array).to.deep.equal(sortedArray);
+    
+});
+
 
 //
 //
