@@ -48,6 +48,20 @@ Cypress.Commands.add('isBrokerNameSorted', (array, ascending = false) => {
     
 });
 
+Cypress.Commands.add('isCompaniesSorted', (array, ascending = false) => {
+    const sortedArray = [...array].sort((a, b) => {
+    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base', ignorePunctuation: false });
+    });
+
+    // Если требуется обратный порядок, переворачиваем массив
+    if (!ascending) {
+      sortedArray.reverse();
+    }
+
+    console.log(sortedArray);
+    expect(array).to.deep.equal(sortedArray);
+})
+
 
 //
 //
